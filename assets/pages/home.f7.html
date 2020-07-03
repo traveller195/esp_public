@@ -1,0 +1,153 @@
+<template>
+
+<!-- Initial Page, "data-name" contains page name -->
+<div data-name="home" class="page">
+
+    <!-- Scrollable page content -->
+
+    <div class="page-content">
+
+        <!-- OpenLayers Kartenfeld-->  
+
+        <div id="map" class="map"></div>
+
+    </div>
+</div>
+</template>
+
+<script>
+    return {
+        data: function () {
+         return {
+          data: 'foo',
+        }
+      },
+      
+      on: {
+        pageInit: function(e, page) {
+            // openlayers map load here!
+            console.log('run enbedded openlayers map load');
+
+            import * as ol from 'ol';
+
+
+
+
+            import Map from 'ol/Map';
+            import View from 'ol/View';
+            import GeoJSON from 'ol/format/GeoJSON';
+            import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+            import {OSM, Vector as VectorSource} from 'ol/source';
+            import {ZoomToExtent} from 'ol/control';
+            import {transform} from 'ol/proj';
+            import {Circle, Fill, Stroke, Style} from 'ol/style';
+
+
+            function loadMap(){
+            console.log('Quellen fuer Karte laden');
+            var source_stat_bezirke = new VectorSource({
+                url: 'json/stat_bezirke_4326.geojson',
+                format: new GeoJSON()
+                });
+
+            var source_aoi = new VectorSource({
+                url: 'json/aoi_4326.geojson',
+                format: new GeoJSON()
+                });    
+
+            var source_punkte_864 = new VectorSource({
+                url: 'json/Punkte_864_A.geojson',
+                format: new GeoJSON()
+                });    
+
+            // center to centroid of AOI
+            var view = new View({
+                center: transform([13.710164431108614, 51.026934250748468], 'EPSG:4326', 'EPSG:3857'),
+                zoom: 14
+                });
+
+
+            console.log('openlayers Karte anzeigen');
+
+            var map = new Map({
+                layers: [
+                    new TileLayer({
+                    source: new OSM()
+                    })
+                //  new VectorLayer({
+                //    source: new VectorSource({
+                //      url: 'json/stat_bezirke_4326.geojson',
+                //      format: new GeoJSON()
+                //    })
+                //  })
+                ],
+                target: 'map',
+                view: view
+
+                });
+
+
+
+            // geojson mit grenzen von statistischen bezirken laden
+
+
+
+            var layer2 = new VectorLayer({
+                source: source_stat_bezirke
+                });
+
+
+                var fill = new Fill({
+                color: 'rgba(0,255,0,0.4)'
+                });
+                var stroke = new Stroke({
+                color: '#3399CC',
+                width: 1.25
+                });
+                var styles = [
+                new Style({
+                    image: new Circle({
+                    fill: fill,
+                    stroke: stroke,
+                    radius: 5
+                    }),
+                    fill: fill,
+                    stroke: stroke
+                })
+                ];
+
+
+            var layer_punkte = new VectorLayer({
+                source: source_punkte_864,
+                style: styles
+                });
+
+            map.addLayer(layer2);
+            map.addLayer(layer_punkte);
+
+
+            // test function
+
+            map.on("click", function(evt){
+                //var extent = [[32.958984, -5.353521], [43.50585, 5.615985]];
+                //map.getView().fit(extent, map.getSize());
+                alert('Achtung Achtung... hier spricht OpenLayers!');
+            });
+
+
+            };
+
+
+            // call function to load map content
+            loadMap();
+
+
+
+  
+
+        },
+      }
+    }
+  </script>
+
+  <!-- siehe auch https://forum.framework7.io/t/google-maps-example/4917-->

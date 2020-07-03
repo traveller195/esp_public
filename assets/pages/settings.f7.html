@@ -1,0 +1,80 @@
+<template>
+<!-- evt. brauche ich eine aufgeklapptes Accordion-->
+<div class="page" data-name="settings">
+    <div class="navbar navbar-large navbar-transparent">
+        <div class="navbar-bg"></div>
+        <div class="navbar-inner sliding">
+            <div class="left">
+            <a href="#" class="link back">
+                <i class="icon icon-back"></i>
+                <span class="if-not-md">Okay</span>
+            </a>
+            </div>
+            <div class="title">Einstellungen</div>
+            <div class="title-large">
+            <div class="title-large-text">Einstellungen</div>
+            </div>
+        </div>
+    </div>
+    <div class="page-content">
+
+
+        <div class="block-title">Karte</div>
+        <div class="list simple-list">
+        <ul>
+
+            <li>
+            <span>OpenStreetMap</span>
+            <label class="toggle toggle-init">
+                <input type="checkbox" checked>
+                <span class="toggle-icon"></span>
+            </label>
+            </li>
+
+            <li>
+                <span>Höhenlinien</span>
+                <label class="toggle toggle-init">
+                <input type="checkbox" checked>
+                <span class="toggle-icon"></span>
+                </label>
+            </li>
+
+            <li>
+                <span>Alle Routen</span>
+                <label class="toggle toggle-init">
+                <input type="checkbox" checked>
+                <span class="toggle-icon"></span>
+                </label>
+            </li>
+
+            <li>
+                <span>essbare Objekte</span>
+                <label class="toggle toggle-init">
+                <input type="checkbox" checked>
+                <span class="toggle-icon"></span>
+                </label>
+            </li>
+
+            <li>
+                <span>Point of Interests</span>
+                <label class="toggle toggle-init">
+                <input type="checkbox" checked>
+                <span class="toggle-icon"></span>
+                </label>
+            </li>
+
+
+
+
+        </ul>
+        </div>
+
+    </div>
+</div>
+</template>
+<script>
+    export default{};
+</script>
+<!-- wenn event close, dann local storage aktualisieren-->
+<!-- wenn event closed, dann ol Karte neu laden-->
+
