@@ -1,0 +1,61 @@
+/* wichtig: import anderer CSS immer mit Tilde ~ arbeiten! */
+
+
+/* Bootstrap stylesheets */
+/*@import '/code/node_modules/bootstrap/dist/css/bootstrap.css';
+@import '~bootstrap/dist/css/bootstrap.min.css'; */
+
+/* framework7 CSS */
+/*@import '/code/node_modules/framework7/css/framework7.bundle.min.css'; */
+
+
+@import '~ol/ol.css';
+
+@import 'my_app.css';
+
+/*@import 'framework7-icons.css'; */
+
+
+
+/* Limit resizable panel width */
+.panel {
+  min-width: 100px;
+  max-width: 90vw;
+}
+
+
+
+
+
+/*@import '/code/src/index-Dateien/navbar-top.css'; */
+
+/*<link rel="stylesheet" href="/code/node_modules/ol/ol.css" type="text/css">*/
+/*<link href="index-Dateien/bootstrap.css" rel="stylesheet">*/
+/*<link href="index-Dateien/navbar-top.css" rel="stylesheet">*/
+
+/* Open Layers */
+/*html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}*/
+#map { 
+  /* configure the size of the map */
+
+
+  width: 100%;
+  height: 100%;
+} 
+
+/* overwrite margin between navbar and map --> no space */
+/* ein !important wird hier ueberschrieben */
+/*.mb-4, .my-4 {
+  margin-bottom: 0em !important;
+
+
+}
+*/
+
+/*body {
+  margin-top: 2em;
+}*/
